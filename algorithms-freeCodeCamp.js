@@ -544,3 +544,144 @@ const sumFibs = num => {
   })
   return sum;
 }
+
+/* 
+29. Intermediate Algorithm Scripting: Sum All Primes
+
+Sum all the prime numbers up to and including the provided number.
+A prime number is defined as a number greater than one and having only two divisors, one and itself. 
+For example, 2 is a prime number because it's only divisible by one and two.
+The provided number may not be a prime.
+sumPrimes(10) should return a number.
+sumPrimes(10) should return 17.
+sumPrimes(977) should return 73156.
+*/
+
+const sumPrimes = num => {
+  let primes = [];
+  for (let i = 2; i <= num; i++) {
+    let toAdd = true;
+    for (let j = 2; (j < i && toAdd); j++) {
+      if (i % j === 0) {
+        toAdd = false;
+      }
+    }
+    if (toAdd) {
+      primes = [...primes, i]
+    }
+  }
+  let sum = 0;
+  primes.map(value => sum += value);
+  return sum;
+}
+
+/* 
+30. Intermediate Algorithm Scripting: Smallest Common Multiple
+
+Find the smallest common multiple of the provided parameters that can be evenly divided by both, 
+as well as by all sequential numbers in the range between these parameters.
+The range will be an array of two numbers that will not necessarily be in numerical order.
+For example, if given 1 and 3, find the smallest common multiple of both 1 and 3 that is 
+also evenly divisible by all numbers between 1 and 3. The answer here would be 6.
+smallestCommons([1, 5]) should return a number.
+smallestCommons([1, 5]) should return 60.
+smallestCommons([2, 10]) should return 2520.
+smallestCommons([1, 13]) should return 360360.
+smallestCommons([23, 18]) should return 6056820.
+*/
+
+const smallestCommons = arr => {
+  const min = Math.min(arr[0], arr[1]);
+  const max = Math.max(arr[0], arr[1]);
+  let testedValue = max*(max-1);
+  let smallestCommonMultipleFound = false;
+  while (!smallestCommonMultipleFound) {
+    let indivisibleNumberFound = false;
+    for (let i = min; (i <= max && !indivisibleNumberFound); i++) {
+      indivisibleNumberFound = false;
+      if (testedValue % i !== 0) {
+        indivisibleNumberFound = true;
+      } else if (i === max) {
+        smallestCommonMultipleFound = true;
+      }
+    }
+    if (!smallestCommonMultipleFound) {
+      testedValue += max*(max-1);
+    } 
+  }
+  return testedValue;
+}
+
+const smallestCommons = arr => {
+  const min = Math.min(arr[0], arr[1]);
+  const max = Math.max(arr[0], arr[1]);
+  let testedValue = max;
+  for(let i = max; i >= min; i--){
+      if(testedValue % i !== 0){
+        testedValue += max; 
+        i = max;
+      } 
+    }
+  return testedValue;
+}
+smallestCommons([1, 5]);
+
+/* 
+31. Intermediate Algorithm Scripting: Drop it
+
+Given the array arr, iterate through and remove each element starting from the first element (the 0 index) 
+until the function func returns true when the iterated element is passed through it.
+Then return the rest of the array once the condition is satisfied, otherwise, 
+arr should be returned as an empty array.
+dropElements([1, 2, 3, 4], function(n) {return n >= 3;}) should return [3, 4].
+dropElements([0, 1, 0, 1], function(n) {return n === 1;}) should return [1, 0, 1].
+dropElements([1, 2, 3], function(n) {return n > 0;}) should return [1, 2, 3].
+dropElements([1, 2, 3, 4], function(n) {return n > 5;}) should return [].
+dropElements([1, 2, 3, 7, 4], function(n) {return n > 3;}) should return [7, 4].
+dropElements([1, 2, 3, 9, 2], function(n) {return n > 2;}) should return [3, 9, 2].
+*/
+
+const dropElements = (arr, func) => {
+  let i = 0;
+  while (!func(arr[i])) {
+    i++;
+    if (i === arr.length) {
+      return [];
+    }
+  }
+  arr = arr.slice(i)
+  return arr;
+}
+
+const dropElements = (arr, func) => {
+  while (!func(arr[0]) && arr.length > 0) {
+   arr.shift();
+  }
+  return arr;
+}
+
+/* 
+33. Intermediate Algorithm Scripting: Binary Agents
+
+Return an English translated sentence of the passed binary string.
+The binary string will be space separated.
+binaryAgent("01001001 00100000 01101100 01101111 01110110 
+01100101 00100000 01000110 01110010 01100101 01100101 01000011 
+01101111 01100100 01100101 01000011 01100001 
+01101101 01110000 00100001") should return "I love FreeCodeCamp!"
+*/
+
+const binaryAgent = str => {
+  let binaryArr = str.split(' ');
+  let arr = [];
+  binaryArr.map(binaryValue => {
+    let value = 0;
+    let multiplier = 1;
+    for (let i = binaryValue.length - 1 ; i >= 0; i--) {
+      value += binaryValue[i] * multiplier;
+      multiplier *= 2;
+    }
+    arr = [...arr, value]
+  })
+  return String.fromCharCode.apply(null, arr)
+}
