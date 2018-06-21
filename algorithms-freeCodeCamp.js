@@ -455,8 +455,8 @@ const pairElement = str => {
 const pairElement = str => {
   const mapping = {'A': 'T', 'T': 'A', 'C': 'G', 'G': 'C'};
   return str
-		.split('')
-		.map(letter => [letter, mapping[letter]]);
+    .split('')
+    .map(letter => [letter, mapping[letter]]);
 }
 
 /* 
