@@ -436,15 +436,15 @@ pairElement("TTGAG") should return [["T","A"],["T","A"],["G","C"],["A","T"],["G"
 
 const pairElement = str => {
   const pairingElement = elem => {
-		switch (elem) {
-			case 'A':
-			  return 'T';
-			case 'T':
-			  return 'A';
-			case 'C':
-			  return 'G';	
-			case 'G':
-			  return 'C';
+    switch (elem) {
+      case 'A':
+        return 'T';
+      case 'T':
+        return 'A';
+      case 'C':
+        return 'G';	
+      case 'G':
+        return 'C';
     }
   }
   return str
