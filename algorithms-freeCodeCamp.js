@@ -161,7 +161,8 @@ const truncateString = (str, num) => {
 /* 
 9. Basic Algorithm Scripting: Finders Keepers
 
-Create a function that looks through an array (first argument) and returns the first element in the array that passes a truth test (second argument). If no element passes the test, return undefined.
+Create a function that looks through an array (first argument) and returns the first element in the array that passes a truth test (second argument). 
+If no element passes the test, return undefined.
 findElement([1, 3, 5, 8, 9, 10], function(num) { return num % 2 === 0; }) should return 8.
 findElement([1, 3, 5, 9], function(num) { return num % 2 === 0; }) should return undefined.
 */
@@ -349,7 +350,8 @@ const sumAll = arr => {
 /* 
 18. Intermediate Algorithm Scripting: Diff Two Arrays
 
-Compare two arrays and return a new array with any items only found in one of the two given arrays, but not both. In other words, return the symmetric difference of the two arrays.
+Compare two arrays and return a new array with any items only found in one of the two given arrays, but not both. 
+In other words, return the symmetric difference of the two arrays.
 sumAll([1, 4]) should return a number.
 sumAll([1, 4]) should return 10.
 sumAll([4, 1]) should return 10.
@@ -379,7 +381,8 @@ const diffArray = (arr1, arr2) => arr1
 /* 
 19. Intermediate Algorithm Scripting: Intermediate Algorithm Scripting: Seek and Destroy
 
-You will be provided with an initial array (the first argument in the destroyer function), followed by one or more arguments. Remove all elements from the initial array that are of the same value as these arguments.
+You will be provided with an initial array (the first argument in the destroyer function), followed by one or more arguments. 
+Remove all elements from the initial array that are of the same value as these arguments.
 destroyer([1, 2, 3, 1, 2, 3], 2, 3) should return [1, 1].
 destroyer([1, 2, 3, 5, 1, 2, 3], 2, 3) should return [1, 5, 1].
 destroyer([3, 5, 1, 2, 2], 2, 3, 5) should return [1].
@@ -396,7 +399,8 @@ const destroyer = (arr, ...arguments) => {
 /* 
 20. Intermediate Algorithm Scripting: Wherefore art thou
 
-Make a function that looks through an array of objects (first argument) and returns an array of all objects that have matching name and value pairs (second argument). Each name and value pair of the source object has to be present in the object from the collection if it is to be included in the returned array.
+Make a function that looks through an array of objects (first argument) and returns an array of all objects that have matching name and value pairs (second argument). 
+Each name and value pair of the source object has to be present in the object from the collection if it is to be included in the returned array.
 whatIsInAName([{ first: "Romeo", last: "Montague" }, { first: "Mercutio", last: null }, { first: "Tybalt", last: "Capulet" }], { last: "Capulet" }) should return [{ first: "Tybalt", last: "Capulet" }]
 whatIsInAName([{ "apple": 1, "bat": 2 }, { "apple": 1 }, { "apple": 1, "bat": 2, "cookie": 2 }], { "apple": 1, "cookie": 2 }) should return [{ "apple": 1, "bat": 2, "cookie": 2 }]
 */
@@ -517,7 +521,8 @@ const convertHTML = str => {
 28. Intermediate Algorithm Scripting: Sum All Odd Fibonacci Numbers
 
 Given a positive integer num, return the sum of all odd Fibonacci numbers that are less than or equal to num.
-The first two numbers in the Fibonacci sequence are 1 and 1. Every additional number in the sequence is the sum of the two previous numbers. The first six numbers of the Fibonacci sequence are 1, 1, 2, 3, 5 and 8.
+The first two numbers in the Fibonacci sequence are 1 and 1. Every additional number in the sequence is the sum of the two previous numbers. 
+The first six numbers of the Fibonacci sequence are 1, 1, 2, 3, 5 and 8.
 For example, sumFibs(10) should return 10 because all odd Fibonacci numbers less than or equal to 10 are 1, 1, 3, and 5.
 sumFibs(1) should return a number.
 sumFibs(4) should return 5.
