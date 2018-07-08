@@ -8,12 +8,12 @@ convertToF(0) should return a value of 32
 convertToF(20) should return a value of 68
 */
 
-const convertToF = (celsius) => {
+const convertToF = celsius => {
   const fahrenheit = (9/5)*celsius+32
   return fahrenheit;
 }
 
-const convertToF = (celsius) => (9/5)*celsius+32
+const convertToF = celsius => (9/5)*celsius+32
 
 /* 
 2. Basic Algorithm Scripting: Reverse a String 
@@ -25,7 +25,7 @@ reverseString("Howdy") should become "ydwoH".
 reverseString("Greetings from Earth") should return "htraE morf sgniteerG"
 */
 
-const reverseString = (str) => {
+const reverseString = str => {
   str = str.split('').reverse().join('');
   return str;
 }
@@ -44,7 +44,7 @@ factorialize(10) should return 3628800.
 factorialize(0) should return 1.
 */
 
-const factorialize = (num) => {
+const factorialize = num => {
   if (num === 0) {
     return 1
   }
@@ -65,7 +65,6 @@ findLongestWordLength("What is the average airspeed velocity of an unladen swall
 const findLongestWordLength = str => {
   let longestWord = 0;
   const newStr = str.split(' ');
-  console.log(newStr);
   for (let i=0; i<newStr.length; i++) {
     if (newStr[i].length > longestWord) {
       longestWord = newStr[i].length;
@@ -91,8 +90,9 @@ largestOfFour([[13, 27, 18, 26], [4, 5, 1, 3], [32, 35, 37, 39], [1000, 1001, 85
 */
 
 const largestOfFour = arr => {
-  const sortedArr = arr.map(subarr => 
-    subarr.sort((a,b) => b-a).slice(0,1));
+  const sortedArr = arr.map(subarr => subarr
+    .sort((a,b) => b-a)
+    .slice(0,1));
   const newArr = [].concat.apply([], sortedArr);
   return newArr;
 }
@@ -111,10 +111,8 @@ Do not use the built-in method .endsWith() to solve the challenge.
 */
 
 const confirmEnding = (str, target) => {
-  const targetLength = target.length;
-  const sliced = str.substr(-targetLength);
-  const trueEnd = sliced === target;
-  return trueEnd;
+  const sliced = str.substr(-target.length);
+  return sliced === target;
 }
 
 const confirmEnding = (string, target) => string.endsWith(target)
@@ -252,13 +250,13 @@ const bouncer = arr => arr = arr.filter(Boolean)
 /* 
 14. Basic Algorithm Scripting: Where do I Belong
 
-Remove all falsy values from an array.
-Falsy values in JavaScript are false, null, 0, "", undefined, and NaN.
-Hint: Try converting each value to a Boolean.
-bouncer([7, "ate", "", false, 9]) should return [7, "ate", 9].
-bouncer(["a", "b", "c"]) should return ["a", "b", "c"].
-bouncer([false, null, 0, NaN, undefined, ""]) should return [].
-bouncer([1, null, NaN, 2, undefined]) should return [1, 2].
+Return the lowest index at which a value (num) should be inserted into an array once it has been sorted. The returned value should be a number.
+For example, getIndexToIns([1,2,3,4], 1.5) should return 1 because it is greater than 1 (index 0), but less than 2 (index 1).
+Likewise, getIndexToIns([20,3,5], 19) should return 2 because 
+once the array has been sorted it will look like [3,5,20] and 19 is less than 20 (index 2) and greater than 5 (index 1).
+getIndexToIns([5, 3, 20, 3], 5) should return 2.
+getIndexToIns([10, 20, 30, 40, 50], 30) should return 2.
+getIndexToIns([2, 5, 10], 15) should return 3.
 */
 
 const getIndexToIns = (arr, num) => {
@@ -271,8 +269,7 @@ const getIndexToIns = (arr, num) => {
 }
 
 const getIndexToIns = (arr, num) => {
-  arr.push(num);
-  arr.sort((a, b)=> a-b);
+  arr.push(num).sort((a, b) => a-b);
   return arr.indexOf(num);
 }
 
@@ -352,11 +349,9 @@ const sumAll = arr => {
 
 Compare two arrays and return a new array with any items only found in one of the two given arrays, but not both. 
 In other words, return the symmetric difference of the two arrays.
-sumAll([1, 4]) should return a number.
-sumAll([1, 4]) should return 10.
-sumAll([4, 1]) should return 10.
-sumAll([5, 10]) should return 45.
-sumAll([10, 5]) should return 45.
+[1, 2, 3, 5], [1, 2, 3, 4, 5] should return [4].
+1, "calf", 3, "piglet"], [1, "calf", 3, 4] should return ["piglet", 4]
+[1, "calf", 3, "piglet"], [7, "filly"] should return [1, "calf", 3, "piglet", 7, "filly"]
 */
 
 const diffArray = (arr1, arr2) => {
@@ -381,7 +376,7 @@ const diffArray = (arr1, arr2) => arr1
 /* 
 19. Intermediate Algorithm Scripting: Intermediate Algorithm Scripting: Seek and Destroy
 
-You will be provided with an initial array (the first argument in the destroyer function), followed by one or more arguments. 
+You will be provided with an initial array, followed by one or more arguments. 
 Remove all elements from the initial array that are of the same value as these arguments.
 destroyer([1, 2, 3, 1, 2, 3], 2, 3) should return [1, 1].
 destroyer([1, 2, 3, 5, 1, 2, 3], 2, 3) should return [1, 5, 1].
@@ -473,7 +468,8 @@ The unique numbers should be sorted by their original order, but the final array
 
 const uniteUnique = (...arrays) => {
   let newArr = [];
-  const allInOne = []
+  let allInOne = [];
+  allInOne
     .concat(...arrays)
     .map(value => 
       newArr = newArr.includes(value) ? [...newArr] : [...newArr, value]
@@ -510,11 +506,10 @@ const convertHTML = str => {
     '\"':'&quot;',
     '\'':"&apos;"
   };
-  str = str
+  return str
     .split('')
     .map(entity => htmlEntitiesMap[entity] || entity)
     .join('');
-  return str;
 }
 
 /* 
